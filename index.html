@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reklama</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    <style>
+        body { background-color: #17212b; color: white; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        button { background-color: #2b5278; color: white; border: none; padding: 15px 30px; border-radius: 5px; font-size: 16px; margin-top: 20px; cursor: pointer; }
+        #status { margin-top: 20px; font-size: 18px; }
+    </style>
+</head>
+<body>
+    <h2>📺 Reklama Oynasi</h2>
+    <div id="status">Reklama yuklanmoqda...</div>
+    <button onclick="showAd()">Keyingi reklamani ko'rish</button>
+
+    <script>
+        const AdController = window.Adsgram.init({ blockId: "50340" });
+
+        function showAd() {
+            document.getElementById('status').innerText = "Reklama ochilmoqda...";
+            
+            AdController.show().then((result) => {
+                document.getElementById('status').innerText = "✅ Reklama ko'rildi! Yana bosishingiz mumkin.";
+            }).catch((result) => {
+                document.getElementById('status').innerText = "⚠️ Reklama yuklanmadi yoki o'tkazib yuborildi.";
+            });
+        }
+
+        window.onload = function() { showAd(); };
+    </script>
+</body>
+</html>
